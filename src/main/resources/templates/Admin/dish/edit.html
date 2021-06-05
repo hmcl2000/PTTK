@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit employee</title>
+    <link th:href="@{/css/cart.css}" rel="stylesheet" />
+    <script  src="/js/jquery.js" type ="text/javascript"></script>
+    <script  src="/js/homeDish.js" type ="text/javascript"></script>
+</head>
+</head>
+<body>
+<div id="top">
+    <div id ="logo">
+        <img src="/pictures2/logo2.png" style="width: 220px ;height: 100px">
+    </div>
+    <div id ="top2">
+        <div id ="menu">
+            <ul>
+                <li><a href="#" title="HOME"><strong>HOME</strong></a></li>
+                <li><a href="#" title="INTRODUCE"><strong>NGUYÊN LIỆU</strong></a></li>
+                <li><a href="#" title="ABOUT"><strong>BẢNG KIỂM</strong></a></li>
+                <li><a href="#" title="MENU"><strong>MENU</strong></a></li>
+                <li><a href="#" title="ENETS"><strong>TRỢ GIÚP</strong></a></li>
+                <li><a href="#" title="CONTACTS"><strong>LIÊN HỆ</strong></a></li>
+                <li><a href="#" title="dangxuat"><strong>ĐĂNG XUẤT</strong></a></li>
+
+
+            </ul>
+        </div>
+        <div id = "abc">
+            <div id ="tk">
+                <div id ="timkiem">
+                    <div class="box">
+                        <input type="text" placeholder="" style="">
+                        <a><i class="fas fa-search-location"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h3>Chỉnh sửa thông tin nhân viên</h3>
+<p>
+    <a th:href="@{/amdin/dish}">Back to dish list</a>
+</p>
+<div id="form">
+    <form action="#" th:action="@{/admin/dish/update}" th:object="${mainDish}" method="post">
+        <fieldset>
+            <legend>Thông tin nhân viên</legend>
+            <tr>
+                <td></td>
+                <label style="margin-right: 80px">ID </label></td>
+                <td><input type="text" th:field="*{id}" readonly ></td></br>
+            </tr>
+            <tr>
+                <td><label style="margin-right: 60px">Mô tả          </label></td>
+                <td><input type="text" th:field="*{description}"></td></br>
+            </tr>
+            <tr>
+                <td><label >Ảnh </label></td>
+                <td><input type="file"  th:field="*{image}"></td></br>
+            </tr>
+            <tr>
+                <td><label style="margin-right: 68px">Tên món         </label></td>
+                <td><input type="text" th:field="*{name}"></td></br>
+            </tr>
+            <tr>
+                <td><label style="margin-right: 58px">Đơn giá      </label></td>
+                <td><input type="text" th:field="*{price}"></td></br>
+            </tr>
+                <td><input type="submit" value="Edit"></td>
+            </tr>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

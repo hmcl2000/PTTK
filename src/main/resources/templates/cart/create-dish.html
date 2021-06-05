@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Create new dish</title>
+  <link th:href="@{/css/cart.css}" rel="stylesheet" />
+  <script  src="/js/jquery.js" type ="text/javascript"></script>
+  <script  src="/js/homeDish.js" type ="text/javascript"></script>
+</head>
+<body>
+<div id="top">
+  <div id ="logo">
+    <img src="/pictures2/logo2.png" style="width: 220px ;height: 100px">
+  </div>
+  <div id ="top2">
+    <div id ="menu">
+      <ul>
+        <li><a href="#" title="HOME"><strong>HOME</strong></a></li>
+        <li><a href="#" title="INTRODUCE"><strong>NGUYÊN LIỆU</strong></a></li>
+        <li><a href="#" title="ABOUT"><strong>BẢNG KIỂM</strong></a></li>
+        <li><a href="#" title="MENU"><strong>MENU</strong></a></li>
+        <li><a href="#" title="ENETS"><strong>TRỢ GIÚP</strong></a></li>
+        <li><a href="#" title="CONTACTS"><strong>LIÊN HỆ</strong></a></li>
+        <li><a href="#" title="dangxuat"><strong>ĐĂNG XUẤT</strong></a></li>
+
+
+      </ul>
+    </div>
+    <div id = "abc">
+      <div id ="tk">
+        <div id ="timkiem">
+          <div class="box">
+            <input type="text" placeholder="" style="">
+            <a><i class="fas fa-search-location"></i></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>
+  <a th:href="@{/home/cart/__${id}__/view}"><button>Xem giỏ hàng của bạn</button></a>
+</p>
+<th:block th:if="${message}">
+  <h5 th:text="${message}"></h5>
+</th:block>
+
+
+
+  <th:block th:if="${dish}">
+    <h1>cart: <span th:text="${dish.cart.id}"></span></h1>
+    <h1>cart: <span th:text="${dish.cart.dateCreated}"></span></h1>
+    <div id="form">
+      <form action="#" th:action="@{/home/cart/__${dish.cart.id}__/save/dish}" th:object="${dish}" method="post" novalidate>
+        <fieldset>
+          <legend>dish Information</legend>
+          <tr>
+            <td><input type="hidden" th:field="*{id}"></td></br>
+          </tr>
+          <tr>
+            <td><label>Name</label></td>
+            <td><input type="text" th:field="*{name}"></td></br>
+          </tr>
+          <tr>
+            <td><label>Amount</label></td>
+            <td><input type="number" th:field="*{amount}"></td></br>
+          </tr>
+          <tr>
+            <td><label>Price</label></td>
+            <td><input type="text" th:field="*{price}"></td></br>
+          </tr>
+          <tr>
+            <td><input type="hidden" th:field="*{cart.id}" readonly></td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="Đặt hàng"></td></br>
+          </tr>
+        </fieldset>
+      </form>
+    </div>
+  </th:block>
+<th:block th:if="${dishes}">
+  <table id="dishs" border="2" style="border: black">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Price</th>
+      <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${dishes}">
+      <td th:text="${row.getName()}"></td>
+      <td><img th:src="@{'/pictures/'+${row.getImage()}}" th:width="70px" th:height="70px"></td>
+      <td th:text="${row.getPrice()}"></td>
+      <td><a th:href="@{/home/cart/__${cart.getId()}__/dish/{id2}(id2=${row.getId()})}"><button>Buy</button></a></td>
+    </tr>
+    </tbody>
+  </table>
+</th:block>
+
+</body>
+</html>
